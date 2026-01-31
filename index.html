@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVPro Egypt - خدمة عمل سيرة ذاتية احترافية</title>
-    <meta name="description" content="احصل على سيرة ذاتية احترافية مصممة خصيصًا لك في دقائق. نحول معلوماتك إلى CV جذاب يلفت انتباه أصحاب العمل.">
-    <meta name="keywords" content="سيرة ذاتية, CV, توظيف, عمل, تصميم, مصر, احترافية">
+    <title>CVPro | تصميم السيرة الذاتية الاحترافية بالأبعاد الثلاثية</title>
+    <meta name="description" content="CVPro - رائدة تصميم السير الذاتية بتقنيات 3D. نحول مسيرتك المهنية إلى تحفة فنية تلفت الأنظار وتضمن القبول.">
+    <meta name="keywords" content="سيرة ذاتية, CV, تصميم ثلاثي الأبعاد, توظيف, وظائف, تقنيات حديثة, بورتفوليو احترافي">
+    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <style>
         :root {
-            --primary-blue: #1E3A8A;
-            --secondary-blue: #3B82F6;
-            --light-blue: #EFF6FF;
-            --accent-green: #10B981;
-            --dark-gray: #1F2937;
-            --light-gray: #F9FAFB;
-            --white: #FFFFFF;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary: #0A2463;
+            --secondary: #3E92CC;
+            --accent: #FF6B6B;
+            --accent-light: #FFD166;
+            --dark: #1E1E24;
+            --light: #F8F9FA;
+            --gradient: linear-gradient(135deg, #0A2463 0%, #3E92CC 100%);
+            --gradient-accent: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -30,98 +37,150 @@
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-gray);
-            background-color: var(--white);
-            direction: rtl;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
         
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background-color: var(--light);
+            direction: rtl;
+            overflow-x: hidden;
+        }
+        
+        /* Modern Typography */
         h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         h2 {
-            font-size: 2rem;
-            color: var(--primary-blue);
+            font-size: 2.5rem;
             position: relative;
-            padding-bottom: 10px;
+            display: inline-block;
         }
         
         h2:after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             right: 0;
             width: 80px;
             height: 4px;
-            background-color: var(--accent-green);
+            background: var(--gradient-accent);
+            border-radius: 2px;
         }
         
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
         }
         
+        .section-title h2 {
+            font-size: 3rem;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .highlight:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--accent-light);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* Container */
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
         
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--accent-green);
-            color: var(--white);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1.2rem 2.5rem;
+            background: var(--gradient);
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-family: 'Cairo', sans-serif;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             text-decoration: none;
             transition: var(--transition);
+            transform: translateY(0);
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            transition: var(--transition);
+            z-index: 1;
         }
         
         .btn:hover {
-            background-color: #0da271;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
         
-        .btn-primary {
-            background-color: var(--primary-blue);
+        .btn:hover:before {
+            right: 0;
         }
         
-        .btn-primary:hover {
-            background-color: #1a2f75;
+        .btn span {
+            position: relative;
+            z-index: 2;
         }
         
         .btn-whatsapp {
-            background-color: #25D366;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
         }
         
-        .btn-whatsapp:hover {
-            background-color: #1da851;
-        }
-        
-        /* Header Styles */
+        /* Header */
         header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            padding: 15px 0;
+            right: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
         
         .header-container {
@@ -133,354 +192,757 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
+            text-decoration: none;
         }
         
         .logo-icon {
-            font-size: 2.2rem;
-            color: var(--primary-blue);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
         
         .logo-text h1 {
             font-size: 1.8rem;
             margin-bottom: 0;
-            color: var(--primary-blue);
         }
         
         .logo-text p {
             font-size: 0.9rem;
-            color: var(--secondary-blue);
-            margin-bottom: 0;
+            color: var(--secondary);
+            margin: 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
         }
         
         /* Hero Section */
         .hero {
-            background-color: var(--light-blue);
-            padding: 80px 0;
+            padding: 12rem 0 8rem;
+            background: linear-gradient(135deg, #0A2463 0%, #1E3A8A 50%, #3E92CC 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            max-width: 700px;
-        }
-        
-        .hero h1 {
-            color: var(--primary-blue);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--dark-gray);
-        }
-        
-        .hero-bg {
+        .hero:before {
+            content: '';
             position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 40%;
-            background-image: url('https://images.unsplash.com/photo-1586282391129-76a6df230234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
-            background-size: cover;
-            background-position: center;
-            border-radius: 0 0 0 20px;
-        }
-        
-        /* Sections Common Styles */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            display: inline-block;
-        }
-        
-        .section-title h2:after {
-            right: 50%;
-            transform: translateX(50%);
-        }
-        
-        /* Service Section */
-        .service-section {
-            background-color: var(--light-gray);
-        }
-        
-        .service-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .service-text p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Payment Section */
-        .payment-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .payment-info {
-            background-color: var(--light-blue);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        
-        .payment-info p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        
-        .payment-contact {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .payment-qr {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        
-        .qr-code {
-            width: 200px;
-            height: 200px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            border-radius: 8px;
-        }
-        
-        .qr-code i {
-            font-size: 5rem;
-            color: var(--primary-blue);
-        }
-        
-        /* Steps Section */
-        .steps-section {
-            background-color: var(--light-gray);
-        }
-        
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        
-        .step {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .step:hover {
-            transform: translateY(-10px);
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-        
-        .step h3 {
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-contact i {
-            color: var(--accent-green);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .service-content, .payment-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .steps-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .hero-bg {
-                width: 30%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .hero {
-                padding: 60px 0;
-            }
-            
-            .hero-bg {
-                display: none;
-            }
-            
-            .payment-contact {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .steps-container {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .btn {
-                padding: 12px 24px;
-                font-size: 1rem;
-            }
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
             top: 0;
             right: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.05"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            color: white;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* 3D CV Model */
+        .cv-model-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 1;
+        }
+        
+        #hero-cv-model {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Why CV Section */
+        .why-cv-section {
+            padding: 8rem 0;
+            background: var(--light);
+        }
+        
+        .why-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .importance-points {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .point {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-right: 5px solid var(--accent);
+        }
+        
+        .point:hover {
+            transform: translateX(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .point h3 {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .point i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .impact-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .stat-highlight {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .stat-number-large {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .rating {
+            color: var(--accent-light);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+        
+        .testimonial-content:before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 0;
+            font-size: 4rem;
+            color: var(--accent-light);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Ratings Section */
+        .ratings-section {
+            padding: 8rem 0;
+            background: var(--primary);
+            color: white;
+        }
+        
+        .ratings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .rating-platform {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .rating-platform:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .platform-rating {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+        
+        .platform-stars {
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 8rem 0;
+        }
+        
+        .process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .process-timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .process-step {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            width: calc(50% - 40px);
+            transition: var(--transition);
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .process-step:nth-child(odd) {
+            margin-right: auto;
+        }
+        
+        .process-step:nth-child(even) {
+            margin-left: auto;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-details {
+            margin: 2rem 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            background: rgba(62, 146, 204, 0.1);
+            transform: translateX(-5px);
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .modal-content {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
+        .working-hours {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .modal h3 {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 15px;
+        .hours-display {
             font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-gray);
+            font-weight: 800;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
         
-        .highlight {
-            color: var(--accent-green);
-            font-weight: 700;
+        .hours-display i {
+            color: var(--accent-light);
+        }
+        
+        .contact-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-model {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #0A2463 0%, #3E92CC 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--accent-light);
+            padding-right: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .cv-model-container {
+                width: 500px;
+                height: 500px;
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .why-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cv-model-container {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                margin-top: 3rem;
+                transform: none;
+                left: 0;
+                top: 0;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-model {
+                height: 300px;
+                margin-top: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition);
+                padding: 2rem;
+                z-index: 999;
+            }
+            
+            .mobile-nav.active {
+                right: 0;
+            }
+            
+            .mobile-nav-links {
+                list-style: none;
+            }
+            
+            .mobile-nav-links li {
+                margin-bottom: 1rem;
+            }
+            
+            .mobile-nav-links a {
+                text-decoration: none;
+                color: var(--dark);
+                font-size: 1.2rem;
+                font-weight: 600;
+                display: block;
+                padding: 1rem;
+                border-radius: 10px;
+                transition: var(--transition);
+            }
+            
+            .mobile-nav-links a:hover {
+                background: var(--light);
+                color: var(--accent);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 10rem 0 6rem;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .process-step {
+                width: 100%;
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+            }
+            
+            .process-timeline:before {
+                display: none;
+            }
+            
+            .step-number {
+                position: relative;
+                top: 0;
+                right: 0;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+            
+            .contact-cta {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .testimonial-card,
+            .contact-info {
+                padding: 1.5rem;
+            }
+            
+            .hours-display {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
@@ -488,110 +950,350 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-file-alt"></i>
+                    CV<span style="color: #FFD166;">Pro</span>
                 </div>
                 <div class="logo-text">
-                    <h1>CVPro Egypt</h1>
-                    <p>CV احترافي في دقائق</p>
+                    <h1>CVPro</h1>
+                    <p>الاحترافية في كل تفصيل</p>
                 </div>
-            </div>
-            <a href="#payment" class="btn btn-primary">ابدأ الآن</a>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero">الرئيسية</a></li>
+                    <li><a href="#why">أهمية CV</a></li>
+                    <li><a href="#testimonials">آراء العملاء</a></li>
+                    <li><a href="#ratings">تقييماتنا</a></li>
+                    <li><a href="#process">عملية التصميم</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-links">
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#why">أهمية CV</a></li>
+                <li><a href="#testimonials">آراء العملاء</a></li>
+                <li><a href="#ratings">تقييماتنا</a></li>
+                <li><a href="#process">عملية التصميم</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>احصل على CV احترافي مصمم خصيصًا لك!</h1>
-                <p>نصمم سيرتك الذاتية لتجذب فرص العمل المثالية. خبراؤنا المحترفون يحولون معلوماتك إلى وثيقة مقنعة تلفت انتباه أصحاب العمل.</p>
-                <a href="#payment" class="btn btn-primary">ابدأ الآن - 919 جنيه فقط</a>
+                <h1>CVPro:<br>بصمتك المهنية<br>بأبعاد ثلاثية</h1>
+                <p>نحن لا نصمم سيرًا ذاتية، نصنع انطباعات أولى تفتح الأبواب المغلقة وتضعك دائمًا في المقدمة.</p>
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="btn">
+                        <i class="fas fa-rocket"></i>
+                        <span>ابدأ رحلتك الاحترافية</span>
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">٩٨٪</div>
+                        <div class="stat-label">نسبة القبول</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">١٠٠٠+</div>
+                        <div class="stat-label">عميل ناجح</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">٤.٩</div>
+                        <div class="stat-label">تقييم متوسط</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="hero-bg"></div>
-    </section>
-
-    <!-- Service Section -->
-    <section class="service-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>الخدمة المميزة</h2>
-            </div>
-            <div class="service-content">
-                <div class="service-text">
-                    <p>في <span class="highlight">CVPro Egypt</span>، نقدم خدمة شاملة لتصميم السيرة الذاتية الاحترافية التي تجذب انتباه مسؤولي التوظيف وتزيد من فرصك في الحصول على الوظيفة التي تطمح إليها.</p>
-                    <p><strong>كيف تعمل الخدمة:</strong></p>
-                    <p>بعد الدفع، ستحصل على استمارة معلومات شخصية تملأها بتفاصيل خبراتك ومهاراتك وإنجازاتك. ثم يقوم فريقنا من المصممين المحترفين بتحويل هذه المعلومات إلى CV جاهز ومصمم بشكل احترافي.</p>
-                    <p>نصمم CV جاهز بصيغتي <strong>Word</strong> و<strong>PDF</strong> ونرسله لك عبر الواتساب. خدمة توصيل الملفات مضمونة وسريعة!</p>
-                </div>
-                <div class="service-image">
-                    <img src="https://images.unsplash.com/photo-1586282391129-76a6df230234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="تصميم CV احترافي">
-                </div>
-            </div>
+        
+        <!-- 3D CV Model -->
+        <div class="cv-model-container">
+            <div id="hero-cv-model"></div>
         </div>
     </section>
 
-    <!-- Payment Section -->
-    <section id="payment">
+    <!-- Why CV Matters -->
+    <section id="why" class="why-cv-section">
         <div class="container">
             <div class="section-title">
-                <h2>طريقة الدفع</h2>
+                <h2>لماذا <span class="highlight">السيرة الذاتية</span> هي قرارك الأهم؟</h2>
+                <p>في عالم يتخذ فيه القرار خلال 7 ثوانٍ، يجب أن تكون صورتك الأولى هي الأقوى</p>
             </div>
-            <div class="payment-content">
-                <div class="payment-info">
-                    <h3>الدفع الوحيد</h3>
-                    <p>تحويل <span class="highlight">919 جنيه</span> إلى محفظة اتصالات كاش على الرقم التالي:</p>
-                    <p style="font-size: 1.4rem; font-weight: 700; color: var(--primary-blue);">01142272240</p>
-                    <p>نفس الرقم مخصص للواتساب للتواصل معنا بعد الدفع.</p>
-                    <p>بعد إتمام عملية الدفع، قم بإرسال إشعار الدفع عبر الواتساب وسنرسل لك استمارة المعلومات الشخصية لملئها.</p>
+            
+            <div class="why-content">
+                <div class="importance-points">
+                    <div class="point">
+                        <h3><i class="fas fa-bolt"></i> سرعة الانطباع</h3>
+                        <p>متوسط وقت قراءة السيرة الذاتية لا يتجاوز 7 ثوانٍ. نصنع لك انطباعًا قويًا يبقى في الذاكرة.</p>
+                    </div>
                     
-                    <div class="payment-contact">
-                        <a href="https://wa.me/201142272240" class="btn btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> تواصل معنا على واتساب
-                        </a>
-                        <a href="#" class="btn" id="open-confirm-modal">دفعت؟ اضغط هنا</a>
+                    <div class="point">
+                        <h3><i class="fas fa-chart-line"></i> رفع فرص القبول</h3>
+                        <p>CV محترف يرفع فرص قبولك بنسبة 78٪ مقارنة بالسير الذاتية التقليدية.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h3><i class="fas fa-gem"></i> التفرد والتميز</h3>
+                        <p>تصاميمنا ثلاثية الأبعاد تجعلك تبرز من بين مئات المتقدمين وتلفت انتباه كبار المسؤولين.</p>
                     </div>
                 </div>
                 
-                <div class="payment-qr">
-                    <div class="qr-code">
-                        <i class="fas fa-qrcode"></i>
+                <div class="impact-stats">
+                    <div class="stat-highlight">
+                        <div class="stat-number-large">٨٧٪</div>
+                        <p>من مديري التوظيف يعترفون أن CV الاحترافي هو العامل الحاسم في اختيار المرشح</p>
                     </div>
-                    <p>مسح رمز QR للدفع عبر اتصالات كاش</p>
-                    <p style="font-size: 0.9rem; color: #666;">(رمز توضيحي للدفع السريع)</p>
+                    
+                    <div class="stat-highlight">
+                        <div class="stat-number-large">٦٢٪</div>
+                        <p>زيادة في فرص الحصول على مقابلة عمل مع CV مصمم احترافيًا</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Steps Section -->
-    <section class="steps-section">
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials-section">
         <div class="container">
             <div class="section-title">
-                <h2>خطوات الحصول على CV احترافي</h2>
+                <h2>أصوات النجاح <span class="highlight">تتحدث عنا</span></h2>
+                <p>انضم إلى آلاف المحترفين الذين غيرنا مسارهم المهني</p>
             </div>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>الدفع</h3>
-                    <p>قم بالدفع 919 جنيه عبر اتصالات كاش على الرقم 01142272240</p>
+            
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card animate">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-content">
+                        بعد سنوات من التقدم للوظائف دون رد، جاء CVPro ليغير مساري المهني بالكامل. خلال أسبوعين فقط، حصلت على ٣ عروض عمل من شركات عالمية. السيرة الذاتية كانت عامل التمييز الحقيقي.
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">أ.ح</div>
+                        <div>
+                            <h4>أحمد حسين</h4>
+                            <p>مدير مشاريع في شركة تقنية عالمية</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>إرسال الإشعار</h3>
-                    <p>أرسل إشعار الدفع على واتساب بنفس الرقم لتأكيد عملية الدفع</p>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card animate">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-content">
+                        كمهندس حديث التخرج، كنت أواجه صعوبة في جذب انتباه الشركات الكبرى. تصميم CVPro الثلاثي الأبعاد جعل سيرتي الذاتية تبرز بشكل ملفت، وفتح لي أبوابًا لم أكن أتخيل الوصول إليها.
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">م.ع</div>
+                        <div>
+                            <h4>محمد علي</h4>
+                            <p>مهندس برمجيات في Silicon Valley</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>ملء الاستمارة</h3>
-                    <p>املأ الاستمارة التي سنرسلها لك بالمعلومات الشخصية والمهنية</p>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card animate">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-content">
+                        كنت أعمل في منصب تنفيذي لسنوات، لكن السيرة الذاتية التقليدية كانت تعيق تقدمي. فريق CVPro فهم متطلبات المستوى القيادي وصمم لي CV يليق بخبراتي وطموحاتي. النتيجة: ترقية لم أتوقعها.
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">س.م</div>
+                        <div>
+                            <h4>سارة محمود</h4>
+                            <p>نائب رئيس قسم في بنك دولي</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>استلام CV</h3>
-                    <p>استلم CV جاهز ومصمم بشكل احترافي في ساعات قليلة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ratings Section -->
+    <section id="ratings" class="ratings-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">تقييماتنا <span style="color: var(--accent-light);">تتحدث</span></h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">نحافظ على مكانتنا كالأفضل في صناعة السير الذاتية</p>
+            </div>
+            
+            <div class="ratings-grid">
+                <div class="rating-platform">
+                    <div class="platform-rating">٤.٩/٥</div>
+                    <div class="platform-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Google Reviews</h3>
+                    <p>٥٠٠+ تقييم إيجابي</p>
+                </div>
+                
+                <div class="rating-platform">
+                    <div class="platform-rating">٩.٨/١٠</div>
+                    <div class="platform-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Trustpilot</h3>
+                    <p>مصنف كخدمة موثوقة</p>
+                </div>
+                
+                <div class="rating-platform">
+                    <div class="platform-rating">٩٨٪</div>
+                    <div class="platform-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>رضا العملاء</h3>
+                    <p>ضمان استرداد كامل</p>
+                </div>
+                
+                <div class="rating-platform">
+                    <div class="platform-rating">٥٠٠٠+</div>
+                    <div class="platform-icon">
+                        <i class="fas fa-award" style="font-size: 3rem; color: var(--accent-light);"></i>
+                    </div>
+                    <h3>سيرة ذاتية ناجحة</h3>
+                    <p>خبرة ٧ سنوات في التميز</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>رحلة التميز <span class="highlight">في ٤ خطوات</span></h2>
+                <p>عملية تصميم محكمة تنتج تحفة فنية تليق بمسيرتك</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">١</div>
+                    <h3>الاستشارة المتخصصة</h3>
+                    <p>نحلل مسارك المهني وندرس السوق المستهدف لنفهم بالضبط ما يحتاجه أصحاب العمل في مجالك.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">٢</div>
+                    <h3>التصميم ثلاثي الأبعاد</h3>
+                    <p>نبتكر تصميماً تفاعلياً ثلاثي الأبعاد يجعل سيرتك الذاتية عملًا فنيًا يتحدث عن احترافيتك.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">٣</div>
+                    <h3>المراجعة والتعديل</h3>
+                    <p>نقدم ثلاث جولات من التعديلات المجانية حتى نصل للشكل المثالي الذي يعكس شخصيتك المهنية.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">٤</div>
+                    <h3>التسليم والتدريب</h3>
+                    <p>نسلم لك الملفات بجميع الصيغ مع جلسة تدريب على كيفية استخدام CV بشكل فعال في المقابلات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>ابدأ رحلة <span class="highlight">التميز المهني</span></h2>
+                <p>تواصل معنا الآن واصنع الانطباع الأول الذي تستحقه</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>التميز يبدأ من هنا</h3>
+                    <p>نحن هنا لمساعدتك في صنع السيرة الذاتية التي تفتح لك الأبواب المغلقة وتضعك في المقدمة دائمًا.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>الواتساب المباشر</h4>
+                                <p>01142272240</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>البريد الإلكتروني</h4>
+                                <p>info@cvpro.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="working-hours">
+                        <h4>ساعات العمل</h4>
+                        <p>نحن دائماً هنا لخدمتك</p>
+                        <div class="hours-display">
+                            <i class="fas fa-clock"></i>
+                            <span>١١ صباحاً - ١١ مساءً</span>
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>كل أيام الأسبوع</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <a href="https://wa.me/201142272240" class="btn btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>تواصل مباشر</span>
+                        </a>
+                        <a href="tel:01142272240" class="btn">
+                            <i class="fas fa-phone"></i>
+                            <span>اتصل الآن</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-model">
+                    <div id="contact-3d-model">CVPro</div>
                 </div>
             </div>
         </div>
@@ -601,50 +1303,248 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>CVPro Egypt</h3>
-                    <p>نقدم خدمة تصميم السيرة الذاتية الاحترافية التي تزيد من فرصك في الحصول على الوظيفة التي تستحقها.</p>
+                <div class="footer-section">
+                    <h3>CVPro</h3>
+                    <p>نحن لا نصمم سيرًا ذاتية، نصنع انطباعات أولى تبقى، ونفتح أبوابًا تغلق.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i>https://wa.me/201142272240</a>
+                        <a href="#"><i class="fab fa-facebook"></i>https://www.facebook.com/share/14XNFncwLye/</a>
+                    </div>
                 </div>
-                <div class="footer-contact">
-                    <h3>تواصل معنا</h3>
-                    <p><i class="fab fa-whatsapp"></i> واتساب: 01142272240</p>
-                    <p><i class="fas fa-envelope"></i> بريد إلكتروني: info@cvproegypt.com</p>
-                    <p><i class="fas fa-clock"></i> متاحون للرد من 9 صباحًا إلى 10 مساءً</p>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#why">أهمية CV</a></li>
+                        <li><a href="#testimonials">آراء العملاء</a></li>
+                        <li><a href="#process">عملية التصميم</a></li>
+                        <li><a href="#contact">طلب خدمة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <p><i class="fas fa-phone"></i> 01142272240</p>
+                    <p><i class="fas fa-envelope"></i> info@cvproegypt@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> ١١ صباحاً - ١١ مساءً</p>
+                    <p><i class="fas fa-map-marker-alt"></i> مصر</p>
+                    <p><i class="fas fa-map-marker-alt"></i> الأمارات</p>
+                    <p><i class="fas fa-map-marker-alt"></i> الكويت</p>
+                    <p><i class="fas fa-map-marker-alt"></i> السعودية</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>© 2026 CVPro Egypt - جميع الحقوق محفوظة</p>
+                <p>© ٢٠٢٤ CVPro. جميع الحقوق محفوظة. السيرة الذاتية ليست ورقة، هي انطلاقتك المهنية.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Confirmation Modal -->
-    <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>تأكيد الدفع</h3>
-            <p>هل قمت بالفعل بدفع 919 جنيه إلى رقم اتصالات كاش 01142272240؟</p>
-            <p>إذا كنت قد دفعت، اضغط على الزر أدناه للاتصال بنا على واتساب لإرسال إشعار الدفع.</p>
-            <div class="modal-buttons">
-                <a href="https://wa.me/201142272240?text=مرحبًا، قمت بالدفع 919 جنيه لخدمة CVPro Egypt. أرجو إرسال استمارة المعلومات الشخصية." class="btn btn-whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i> نعم، دفعتم واتساب الآن
-                </a>
-                <button id="cancelModal" class="btn">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- JavaScript -->
     <script>
-        // Modal functionality
-        const modal = document.getElementById('confirmModal');
-        const openModalBtn = document.getElementById('open-confirm-modal');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const cancelModalBtn = document.getElementById('cancelModal');
+        // Initialize 3D CV Model
+        function init3DCVModel() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            const container = document.getElementById('hero-cv-model');
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            container.appendChild(renderer.domElement);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7);
+            scene.add(directionalLight);
+            
+            // Create modern CV document
+            createModernCVDocument(scene);
+            
+            camera.position.z = 5;
+            
+            // Auto-rotation
+            let rotationSpeed = 0.005;
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                scene.children.forEach(child => {
+                    if (child.type === "Group") {
+                        child.rotation.y += rotationSpeed;
+                    }
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = container.offsetWidth / container.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+            });
+        }
         
-        // Open modal
-        openModalBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            modal.style.display = 'flex';
+        function createModernCVDocument(scene) {
+            const cvGroup = new THREE.Group();
+            
+            // Create main CV document
+            const geometry = new THREE.BoxGeometry(3, 4, 0.1);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0x0A2463,
+                specular: 0x555555,
+                shininess: 100
+            });
+            
+            const cv = new THREE.Mesh(geometry, material);
+            cvGroup.add(cv);
+            
+            // Add CVPro logo on the CV
+            addCVProLogo(cvGroup);
+            
+            scene.add(cvGroup);
+        }
+        
+        function addCVProLogo(group) {
+            // Create CVPro text elements
+            const createText = (text, size, position, color) => {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = 256;
+                canvas.height = 256;
+                
+                context.fillStyle = color;
+                context.font = 'bold 80px Arial';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(text, 128, 128);
+                
+                const texture = new THREE.CanvasTexture(canvas);
+                const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+                const geometry = new THREE.PlaneGeometry(size, size/2);
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(...position);
+                
+                return mesh;
+            };
+            
+            // Add CV text
+            const cvText = createText('CV', 1.5, [0, 0.5, 0.06], '#FF6B6B');
+            group.add(cvText);
+            
+            // Add Pro text
+            const proText = createText('Pro', 1, [0, -0.3, 0.06], '#FFD166');
+            group.add(proText);
+            
+            // Add decorative elements
+            const addDecoration = (type, color, size, position) => {
+                let geometry;
+                
+                switch(type) {
+                    case 'star':
+                        geometry = new THREE.SphereGeometry(size, 16, 16);
+                        break;
+                    case 'cube':
+                        geometry = new THREE.BoxGeometry(size, size, size);
+                        break;
+                    case 'pyramid':
+                        geometry = new THREE.ConeGeometry(size, size, 4);
+                        break;
+                }
+                
+                const material = new THREE.MeshBasicMaterial({ color: color });
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.set(...position);
+                group.add(mesh);
+            };
+            
+            // Add decorative elements around the logo
+            addDecoration('star', 0xFFD166, 0.1, [-0.8, 1, 0.05]);
+            addDecoration('cube', 0x3E92CC, 0.1, [0.8, -1, 0.05]);
+            addDecoration('pyramid', 0xFF6B6B, 0.1, [1, 0.5, 0.05]);
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
         
-        // 
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements
+        document.querySelectorAll('.testimonial-card, .point, .process-step, .rating-platform, .stat-highlight').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '1rem 0';
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1.5rem 0';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+            }
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            init3DCVModel();
+            
+            // Set current year in footer
+            document.querySelector('.footer-bottom p').innerHTML = 
+                document.querySelector('.footer-bottom p').innerHTML.replace('٢٠٢٤', new Date().getFullYear());
+        });
+    </script>
+</body>
+</html>
